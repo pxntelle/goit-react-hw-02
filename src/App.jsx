@@ -3,6 +3,7 @@ import "./App.css";
 import Description from "./components/Description/Description";
 import Options from "./components/Options/Options";
 import Feedback from "./components/Feedback/Feedback";
+import Notification from "./components/Notification/Notification";
 
 export default function App() {
   const [clicks, setClicks] = useState(
@@ -17,7 +18,7 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("click", JSON.stringify(clicks));
   }, [clicks]);
-  const handleClick = (key) => {
+  const updateFeedback = (key) => {
     setClicks({
       ...clicks,
       [key]: clicks[key] + 1,
@@ -41,15 +42,20 @@ export default function App() {
     <div className="appContainer">
       <Description />
       <Options
-        handleClick={handleClick}
+        updateFeedback={updateFeedback}
         totalFeedback={totalFeedback}
         resetClick={resetClick}
       />
-      <Feedback
-        clicks={clicks}
-        totalFeedback={totalFeedback}
-        positiveRate={positiveRate}
-      />
+
+      {totalFeedback > 0 ? (
+        <Feedback
+          clicks={clicks}
+          totalFeedback={totalFeedback}
+          positiveRate={positiveRate}
+        />
+      ) : (
+        <Notification />
+      )}
     </div>
   );
 }

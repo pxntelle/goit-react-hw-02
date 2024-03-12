@@ -1,13 +1,14 @@
 import css from "./Options.module.css";
 
-export default function Options({ handleClick, totalFeedback, resetClick }) {
+export default function Options({ updateFeedback, totalFeedback, resetClick }) {
   const hasClicks = totalFeedback > 0;
+
   return (
     <div className={css.optionsContainer}>
       <div className={css.buttonSection}>
-        <button onClick={() => handleClick("good")}>Good</button>
-        <button onClick={() => handleClick("neutral")}>Neutral</button>
-        <button onClick={() => handleClick("bad")}>Bad</button>
+        <button onClick={() => updateFeedback("good")}>Good</button>
+        <button onClick={() => updateFeedback("neutral")}>Neutral</button>
+        <button onClick={() => updateFeedback("bad")}>Bad</button>
       </div>
       {hasClicks && (
         <div className={css.resetButton}>

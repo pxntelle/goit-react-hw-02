@@ -1,10 +1,11 @@
 import css from "./Feedback.module.css";
+import Notification from "../Notification/Notification";
 
 export default function Feedback({ clicks, totalFeedback, positiveRate }) {
   return (
     <div className={css.fbSection}>
       {totalFeedback === 0 ? (
-        <p>No feedback yet</p>
+        <Notification />
       ) : (
         <>
           <p>Good: {clicks.good}</p>
